@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhv7habpmqjpy"]
+
+[ext_resource type="PackedScene" uid="uid://bokhqxe2v15jj" path="res://Labs/11/PinPaddle.tscn" id="1_5qyme"]
+
+[node name="pinballStarter" type="Node3D"]
+
+[node name="PinPaddle" parent="." instance=ExtResource("1_5qyme")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499792, 0, 1.48931)
+rotatePower = 10.0

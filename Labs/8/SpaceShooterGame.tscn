@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dajgr4ameyy20"]
+
+[ext_resource type="Script" path="res://Labs/8/SpaceShooterGameController.gd" id="1_81hej"]
+[ext_resource type="Script" path="res://Labs/8/SpacePlayer.gd" id="1_gm4sg"]
+[ext_resource type="Script" path="res://Labs/8/EnemySpawner.gd" id="3_amrx6"]
+[ext_resource type="Texture2D" uid="uid://cigqv61uer681" path="res://sprites/PNG/playerShip1_green.png" id="3_ojh3y"]
+[ext_resource type="PackedScene" uid="uid://dbi7op54tc3g7" path="res://Labs/8/poof.tscn" id="4_ac6i2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8pjx"]
+size = Vector2(77, 79)
+
+[node name="SpaceShooterGame" type="Node2D" node_paths=PackedStringArray("txtScore", "player", "spawner")]
+position = Vector2(0, 1)
+script = ExtResource("1_81hej")
+txtScore = NodePath("txtScore")
+player = NodePath("Player")
+spawner = NodePath("EnemySpawner")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(571, 490)
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_gm4sg")
+
+[node name="img" type="Sprite2D" parent="Player"]
+texture = ExtResource("3_ojh3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-2.5, 2.5)
+shape = SubResource("RectangleShape2D_q8pjx")
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource("3_amrx6")
+
+[node name="Timer" type="Timer" parent="EnemySpawner"]
+autostart = true
+
+[node name="Poof" parent="." instance=ExtResource("4_ac6i2")]
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="Sounds"]
+
+[node name="txtScore" type="Label" parent="."]
+offset_left = 68.0
+offset_top = 37.0
+offset_right = 159.0
+offset_bottom = 97.0
+text = "0"
+
+[node name="TODO ADD HIGHSCORE UI HERE" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
