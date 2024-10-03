@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=4 uid="uid://cwvxskl34pd8t"]
+
+[ext_resource type="Script" path="res://character.gd" id="1_n5afy"]
+[ext_resource type="Script" path="res://lvl2Controller.gd" id="1_tsxlt"]
+[ext_resource type="Texture2D" uid="uid://do5w3lsxtlv5v" path="res://character_0000.png" id="2_atw0b"]
+[ext_resource type="TileSet" uid="uid://cwfu4lg5pomkl" path="res://GameTiles.tres" id="3_p1x8h"]
+[ext_resource type="Script" path="res://coin.gd" id="4_scu0h"]
+[ext_resource type="Texture2D" uid="uid://cxnlr2atnua6f" path="res://coin.png" id="5_dt8pv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dy1nc"]
+size = Vector2(28, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21ele"]
+size = Vector2(1611, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7gcyo"]
+
+[node name="Lvl_2" type="Node2D"]
+script = ExtResource("1_tsxlt")
+
+[node name="Character" type="CharacterBody2D" parent="."]
+script = ExtResource("1_n5afy")
+
+[node name="CharacterColl" type="CollisionShape2D" parent="Character"]
+position = Vector2(42, 591)
+shape = SubResource("RectangleShape2D_dy1nc")
+
+[node name="CharacterSpr" type="Sprite2D" parent="Character"]
+position = Vector2(42.5, 590.5)
+scale = Vector2(1.375, 1.29167)
+texture = ExtResource("2_atw0b")
+
+[node name="TileMap" type="TileMapLayer" parent="."]
+light_mask = 3
+visibility_layer = 3
+use_parent_material = true
+tile_map_data = PackedByteArray("AAABACYAAAABAAEAAAABACcAAAABAAIAAAACACYAAAACAAEAAAACACcAAAACAAIAAAADACYAAAADAAEAAAADACcAAAADAAIAAAAEACYAAAADAAEAAAAEACcAAAADAAIAAAAJACEAAAABAAEAAAAKACEAAAACAAEAAAALACEAAAADAAEAAAAaACEAAAABAAEAAAAbACEAAAACAAEAAAAcACEAAAADAAEAAAASABsAAAABAAEAAAATABsAAAACAAEAAAAUABsAAAADAAEAAAAyACcAAAABAAEAAAAzACcAAAACAAEAAAA0ACcAAAADAAEAAAANAB4AAAABAAEAAAAOAB4AAAACAAEAAAAPAB4AAAADAAEAAAAYABgAAAABAAEAAAAZABgAAAACAAEAAAAaABgAAAADAAEAAAAdACEAAAACAAEAAAAeACEAAAADAAEAAAAfACEAAAADAAEAAAAlAB0AAAAFAAAAAAAoABsAAAAFAAAAAAAjABkAAAAFAAAAAAAlABMAAAAFAAAAAAAsABcAAAAFAAAAAAAqABkAAAAFAAAAAAAvACYAAAANAAUAAAAvACcAAAANAAYAAAAvACQAAAANAAUAAAAvACUAAAANAAYAAAAvACIAAAANAAYAAAAvACMAAAANAAYAAAAvACEAAAANAAUAAAAvAB8AAAANAAUAAAAvACAAAAANAAYAAAAvAB0AAAANAAUAAAAvAB4AAAANAAYAAAAvABsAAAANAAUAAAAvABwAAAANAAYAAAAvABkAAAANAAUAAAAvABoAAAANAAYAAAAvABcAAAANAAUAAAAvABgAAAANAAYAAAAvABUAAAANAAUAAAAvABYAAAANAAYAAAAuABIAAAANAAAAAAAuABMAAAANAAEAAAAuABQAAAANAAIAAAAvABIAAAAOAAAAAAAvABMAAAAOAAEAAAAvABQAAAAOAAIAAAAwABIAAAAPAAAAAAAwABMAAAAPAAEAAAAwABQAAAAPAAIAAAAxABIAAAANAAAAAAAxABMAAAANAAEAAAAxABQAAAANAAIAAAAyABIAAAAOAAAAAAAyABMAAAAOAAEAAAAyABQAAAAOAAIAAAAzABIAAAAPAAAAAAAzABMAAAAPAAEAAAAzABQAAAAPAAIAAAA0ABIAAAANAAAAAAA0ABMAAAANAAEAAAA0ABQAAAANAAIAAAA1ABIAAAAOAAAAAAA1ABMAAAAOAAEAAAA1ABQAAAAOAAIAAAA2ABIAAAAPAAAAAAA2ABMAAAAPAAEAAAA2ABQAAAAPAAIAAAA3ABIAAAANAAAAAAA3ABMAAAANAAEAAAA3ABQAAAANAAIAAAA4ABIAAAAOAAAAAAA4ABMAAAAOAAEAAAA4ABQAAAAOAAIAAAA5ABIAAAAPAAAAAAA5ABMAAAAPAAEAAAA5ABQAAAAPAAIAAAA3AA4AAAANAAMAAAA4AA4AAAAOAAMAAAA5AA4AAAAPAAMAAAA0AA0AAAANAAMAAAA1AA0AAAAOAAMAAAA2AA0AAAAPAAMAAAAxAAwAAAANAAMAAAAyAAwAAAAOAAMAAAAzAAwAAAAPAAMAAAAuAAsAAAANAAMAAAAvAAsAAAAOAAMAAAAwAAsAAAAPAAMAAAArAAsAAAANAAMAAAAsAAsAAAAOAAMAAAAtAAsAAAAPAAMAAAAoAAsAAAANAAMAAAApAAsAAAAOAAMAAAAqAAsAAAAPAAMAAAAlAAsAAAANAAMAAAAmAAsAAAAOAAMAAAAnAAsAAAAPAAMAAABFACcAAAABAAEAAABGACcAAAACAAEAAABHACcAAAADAAEAAABFACQAAAAFAAAAAABHACAAAAAFAAAAAABFAB0AAAAFAAAAAABHABoAAAAFAAAAAABFABcAAAAFAAAAAABHABQAAAAFAAAAAABFABEAAAAFAAAAAAA+AA8AAAANAAMAAAA/AA8AAAAOAAMAAABAAA8AAAAPAAMAAABIACYAAAANAAMAAABJACYAAAAOAAMAAABKACYAAAAPAAMAAABIACQAAAANAAMAAABJACQAAAAOAAMAAABKACQAAAAPAAMAAABIACUAAAANAAMAAABJACUAAAAOAAMAAABKACUAAAAPAAMAAABIACEAAAANAAAAAABIACIAAAANAAEAAABIACMAAAANAAIAAABJACEAAAAOAAAAAABJACIAAAAOAAEAAABJACMAAAAOAAIAAABKACEAAAAPAAAAAABKACIAAAAPAAEAAABKACMAAAAPAAIAAABIAB4AAAANAAAAAABIAB8AAAANAAEAAABIACAAAAANAAIAAABJAB4AAAAOAAAAAABJAB8AAAAOAAEAAABJACAAAAAOAAIAAABKAB4AAAAPAAAAAABKAB8AAAAPAAEAAABKACAAAAAPAAIAAABIABsAAAANAAAAAABIABwAAAANAAEAAABIAB0AAAANAAIAAABJABsAAAAOAAAAAABJABwAAAAOAAEAAABJAB0AAAAOAAIAAABKABsAAAAPAAAAAABKABwAAAAPAAEAAABKAB0AAAAPAAIAAABIABgAAAANAAAAAABIABkAAAANAAEAAABIABoAAAANAAIAAABJABgAAAAOAAAAAABJABkAAAAOAAEAAABJABoAAAAOAAIAAABKABgAAAAPAAAAAABKABkAAAAPAAEAAABKABoAAAAPAAIAAABIABUAAAANAAAAAABIABYAAAANAAEAAABIABcAAAANAAIAAABJABUAAAAOAAAAAABJABYAAAAOAAEAAABJABcAAAAOAAIAAABKABUAAAAPAAAAAABKABYAAAAPAAEAAABKABcAAAAPAAIAAABIABIAAAANAAAAAABIABMAAAANAAEAAABIABQAAAANAAIAAABJABIAAAAOAAAAAABJABMAAAAOAAEAAABJABQAAAAOAAIAAABKABIAAAAPAAAAAABKABMAAAAPAAEAAABKABQAAAAPAAIAAABIAA8AAAANAAAAAABIABAAAAANAAEAAABIABEAAAANAAIAAABJAA8AAAAOAAAAAABJABAAAAAOAAEAAABJABEAAAAOAAIAAABKAA8AAAAPAAAAAABKABAAAAAPAAEAAABKABEAAAAPAAIAAAAQACcAAAABAAEAAAARACcAAAACAAEAAAASACcAAAADAAEAAAAJACcAAAABAAEAAAAKACcAAAACAAEAAAALACcAAAADAAEAAAAeAA0AAAANAAMAAAAfAA0AAAAOAAMAAAAgAA0AAAAPAAMAAAAXAAsAAAANAAMAAAAYAAsAAAAOAAMAAAAZAAsAAAAPAAMAAAAQAAkAAAANAAMAAAARAAkAAAAOAAMAAAASAAkAAAAPAAMAAAAMAAoAAAAOAAMAAAAGAAkAAAAOAAMAAAAEAAcAAAAOAAMAAAACAAUAAAAOAAMAAAA=")
+tile_set = ExtResource("3_p1x8h")
+use_kinematic_bodies = true
+
+[node name="Score" type="Label" parent="."]
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 70.0
+offset_bottom = 39.0
+text = "0"
+
+[node name="DeathArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+position = Vector2(644, 742)
+shape = SubResource("RectangleShape2D_21ele")
+
+[node name="Coin" type="Area2D" parent="."]
+script = ExtResource("4_scu0h")
+
+[node name="CoinSpr" type="Sprite2D" parent="Coin"]
+position = Vector2(407, 368)
+scale = Vector2(1.33333, 1.44444)
+texture = ExtResource("5_dt8pv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin"]
+position = Vector2(407, 368)
+shape = SubResource("CircleShape2D_7gcyo")
+
+[node name="Coin2" type="Area2D" parent="."]
+script = ExtResource("4_scu0h")
+
+[node name="CoinSpr" type="Sprite2D" parent="Coin2"]
+position = Vector2(29, 11)
+scale = Vector2(1.33333, 1.44444)
+texture = ExtResource("5_dt8pv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin2"]
+position = Vector2(29, 11)
+shape = SubResource("CircleShape2D_7gcyo")
+
+[node name="Coin3" type="Area2D" parent="."]
+script = ExtResource("4_scu0h")
+
+[node name="CoinSpr" type="Sprite2D" parent="Coin3"]
+position = Vector2(822, 605)
+scale = Vector2(1.33333, 1.44444)
+texture = ExtResource("5_dt8pv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin3"]
+position = Vector2(822, 605)
+shape = SubResource("CircleShape2D_7gcyo")
+
+[node name="Coin4" type="Area2D" parent="."]
+script = ExtResource("4_scu0h")
+
+[node name="CoinSpr" type="Sprite2D" parent="Coin4"]
+position = Vector2(601, 287)
+scale = Vector2(1.33333, 1.44444)
+texture = ExtResource("5_dt8pv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin4"]
+position = Vector2(601, 287)
+shape = SubResource("CircleShape2D_7gcyo")
+
+[node name="Coin5" type="Area2D" parent="."]
+script = ExtResource("4_scu0h")
+
+[node name="CoinSpr" type="Sprite2D" parent="Coin5"]
+position = Vector2(465, 505)
+scale = Vector2(1.33333, 1.44444)
+texture = ExtResource("5_dt8pv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin5"]
+position = Vector2(465, 507)
+shape = SubResource("CircleShape2D_7gcyo")
+
+[connection signal="body_entered" from="DeathArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Coin" to="." method="_on_coin_body_entered"]
+[connection signal="body_entered" from="Coin" to="Coin" method="_on_body_entered"]
+[connection signal="body_entered" from="Coin2" to="." method="_on_coin_2_body_entered"]
+[connection signal="body_entered" from="Coin2" to="Coin2" method="_on_body_entered"]
+[connection signal="body_entered" from="Coin3" to="." method="_on_coin_3_body_entered"]
+[connection signal="body_entered" from="Coin3" to="Coin3" method="_on_body_entered"]
+[connection signal="body_entered" from="Coin4" to="." method="_on_coin_4_body_entered"]
+[connection signal="body_entered" from="Coin4" to="Coin4" method="_on_body_entered"]
+[connection signal="body_entered" from="Coin5" to="." method="_on_coin_5_body_entered"]
+[connection signal="body_entered" from="Coin5" to="Coin5" method="_on_body_entered"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5jb7ckauncan"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_qliis"]
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_qliis")
+
+[node name="Lvl_1" type="Button" parent="."]
+offset_left = 173.0
+offset_top = 277.0
+offset_right = 235.0
+offset_bottom = 308.0
+scale = Vector2(5.00232, 3.75927)
+text = "Level 1"
+
+[node name="Lvl_2" type="Button" parent="."]
+offset_left = 710.0
+offset_top = 281.0
+offset_right = 772.0
+offset_bottom = 312.0
+scale = Vector2(4.93076, 3.78124)
+text = "Level 2"
+
+[node name="Lvl_3" type="Button" parent="."]
+offset_left = 346.0
+offset_top = 431.0
+offset_right = 438.0
+offset_bottom = 462.0
+scale = Vector2(5.00232, 3.75927)
+text = "Quit Game"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 366.0
+offset_top = 114.0
+offset_right = 454.0
+offset_bottom = 140.0
+scale = Vector2(5.12634, 4.92227)
+text = "Game Over"
+
+[connection signal="button_down" from="Lvl_1" to="." method="_on_lvl_1_button_down"]
+[connection signal="button_down" from="Lvl_2" to="." method="_on_lvl_2_button_down"]
+[connection signal="button_down" from="Lvl_3" to="." method="_on_lvl_3_button_down"]
