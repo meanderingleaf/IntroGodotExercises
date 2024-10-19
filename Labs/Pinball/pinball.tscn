@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvfdflf10a614"]
+
+[ext_resource type="PackedScene" uid="uid://0yhpnmt0dq4y" path="res://obstacle.res" id="1_q2b2f"]
+[ext_resource type="PackedScene" uid="uid://86mwstbcdq8i" path="res://paddle.res" id="2_s3gby"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w8485"]
+size = Vector3(2.28931, 0.0673828, 5.03754)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sc7ep"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utejg"]
+albedo_color = Color(1, 0.517647, 0.164706, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kynu3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwp5o"]
+albedo_color = Color(0.877616, 0.877616, 0.877616, 1)
+metallic = 0.7
+metallic_specular = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3tes6"]
+radius = 0.0557779
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Table" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.850719, 0.52562, 0, -0.52562, 0.850719, 0, 3.01939, 5.04028)
+
+[node name="TableCol" type="CollisionShape3D" parent="Table"]
+transform = Transform3D(1.04167, 0, 0, 0, 0.707819, -0.764241, 0, 0.764241, 0.707819, -0.0587753, 1.15977, -6.89322)
+shape = SubResource("BoxShape3D_w8485")
+
+[node name="TableMesh" type="MeshInstance3D" parent="Table"]
+transform = Transform3D(2.39427, 0, 0, 0, 3.85817, 0.12404, 0, -3.59051, 0.133287, -0.0539569, 1.11382, -6.91698)
+mesh = SubResource("BoxMesh_sc7ep")
+surface_material_override/0 = SubResource("StandardMaterial3D_utejg")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.997315, 0.0732382, 0, -0.0732382, 0.997315, -0.0143898, 0.386183, 3.53274)
+fov = 67.5
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.805628, 0.592421, 0, -0.592421, 0.805628, 0, 3.01939, 5.04028)
+
+[node name="Ball" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09134, -1.14118)
+
+[node name="BallMesh" type="MeshInstance3D" parent="Ball"]
+transform = Transform3D(0.102183, 0, 0, 0, 0.102183, 0, 0, 0, 0.102183, 0, 0.40441, -2.60271)
+mesh = SubResource("SphereMesh_kynu3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_rwp5o")
+
+[node name="BallCol" type="CollisionShape3D" parent="Ball"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405024, -2.60463)
+shape = SubResource("SphereShape3D_3tes6")
+
+[node name="Obstacle" parent="." instance=ExtResource("1_q2b2f")]
+transform = Transform3D(1, 0, 0, 0, 0.964271, -0.264917, 0, 0.264917, 0.964271, 0.545708, 0.917367, -3.36729)
+
+[node name="Obstacle2" parent="." instance=ExtResource("1_q2b2f")]
+transform = Transform3D(1, 0, 0, 0, 0.964271, -0.264917, 0, 0.264917, 0.964271, -0.653242, 0.912073, -3.30598)
+
+[node name="Obstacle3" parent="." instance=ExtResource("1_q2b2f")]
+transform = Transform3D(1, 0, 0, 0, 0.964271, -0.264917, 0, 0.264917, 0.964271, -0.137954, 0.193172, -1.2743)
+
+[node name="Obstacle4" parent="." instance=ExtResource("1_q2b2f")]
+transform = Transform3D(1, 0, 0, 0, 0.964271, -0.264917, 0, 0.264917, 0.964271, 0.545708, 0.324607, -1.50303)
+
+[node name="Obstacle5" parent="." instance=ExtResource("1_q2b2f")]
+transform = Transform3D(1, 0, 0, 0, 0.964271, -0.264917, 0, 0.264917, 0.964271, -0.750228, -0.0546638, -0.161251)
+
+[node name="Obstacle6" parent="." instance=ExtResource("1_q2b2f")]
+transform = Transform3D(1, 0, 0, 0, 0.964271, -0.264917, 0, 0.264917, 0.964271, 0.0966617, 0.560831, -2.22869)
+
+[node name="Obstacle7" parent="." instance=ExtResource("1_q2b2f")]
+transform = Transform3D(1, 0, 0, 0, 0.964271, -0.264917, 0, 0.264917, 0.964271, 0.279314, 0.0663655, -0.525816)
+
+[node name="Obstacle8" parent="." instance=ExtResource("1_q2b2f")]
+transform = Transform3D(1, 0, 0, 0, 0.964271, -0.264917, 0, 0.264917, 0.964271, -0.694722, 0.197901, -1.21238)
+
+[node name="Paddle" parent="." instance=ExtResource("2_s3gby")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.108809, -0.374126)
+
+[node name="Paddle2" parent="." instance=ExtResource("2_s3gby")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.41321, 0.0830969, -0.375742)
