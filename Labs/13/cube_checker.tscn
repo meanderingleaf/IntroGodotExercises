@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8iexc0ahnxqw"]
+
+[ext_resource type="Script" path="res://cube_checker.gd" id="1_irt7l"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_u5unt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rc5xd"]
+size = Vector3(1.31348, 0.99939, 1.27869)
+
+[node name="CubeChecker" type="Area3D"]
+script = ExtResource("1_irt7l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.32918, 0, 0, 0, 0.418465, 0, 0, 0, 1.32918, 0, 0, 0)
+mesh = SubResource("PrismMesh_u5unt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285828, 0)
+shape = SubResource("BoxShape3D_rc5xd")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

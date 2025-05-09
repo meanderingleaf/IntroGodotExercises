@@ -1,0 +1,137 @@
+[gd_scene load_steps=19 format=3 uid="uid://c14aqquied2cf"]
+
+[ext_resource type="Script" path="res://pushingPuzzleControl.gd" id="1_hn4xp"]
+[ext_resource type="Script" path="res://colorCube.gd" id="1_trt71"]
+[ext_resource type="Material" uid="uid://c5eoft6tysyww" path="res://colorYellow.tres" id="2_deu8b"]
+[ext_resource type="Material" uid="uid://c0wxp2ok16faj" path="res://colorRed.tres" id="3_tu08g"]
+[ext_resource type="Script" path="res://player.gd" id="4_c10rj"]
+[ext_resource type="Script" path="res://goodHead.gd" id="5_i8sw2"]
+[ext_resource type="PackedScene" uid="uid://b8iexc0ahnxqw" path="res://cube_checker.tscn" id="7_no3tv"]
+[ext_resource type="AudioStream" uid="uid://ec1wxe4geo82" path="res://boom-By-Tuna.mp3" id="8_76adl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ctk0u"]
+sky_top_color = Color(0.809933, 0.515488, 9.62615e-07, 1)
+sky_horizon_color = Color(0.768897, 0.751492, 0.578971, 1)
+ground_bottom_color = Color(0.265657, 0.490479, 0.315883, 1)
+ground_horizon_color = Color(0.768897, 0.751492, 0.578971, 1)
+
+[sub_resource type="Sky" id="Sky_ybs6g"]
+sky_material = SubResource("ProceduralSkyMaterial_ctk0u")
+
+[sub_resource type="Environment" id="Environment_5imxy"]
+background_mode = 2
+sky = SubResource("Sky_ybs6g")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_gvjno"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3v3eb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vs8t7"]
+albedo_color = Color(0.317647, 1, 1, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6wlkr"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bugf5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kdcva"]
+size = Vector3(19.4575, 1, 17.3566)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dkwug"]
+
+[node name="PushingPuzzle" type="Node3D"]
+script = ExtResource("1_hn4xp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5imxy")
+
+[node name="Box" type="RigidBody3D" parent="." groups=["box"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.46541, 0, 0)
+script = ExtResource("1_trt71")
+cubeColor = "yellow"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box"]
+material_override = ExtResource("2_deu8b")
+mesh = SubResource("BoxMesh_gvjno")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
+shape = SubResource("BoxShape3D_3v3eb")
+
+[node name="Box2" type="RigidBody3D" parent="." groups=["box"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+script = ExtResource("1_trt71")
+cubeColor = "cyan"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box2"]
+mesh = SubResource("BoxMesh_gvjno")
+surface_material_override/0 = SubResource("StandardMaterial3D_vs8t7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box2"]
+shape = SubResource("BoxShape3D_3v3eb")
+
+[node name="Box3" type="RigidBody3D" parent="." groups=["box"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0271835, 0, 0)
+script = ExtResource("1_trt71")
+cubeColor = "red"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box3"]
+material_override = ExtResource("3_tu08g")
+mesh = SubResource("BoxMesh_gvjno")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box3"]
+shape = SubResource("BoxShape3D_3v3eb")
+
+[node name="player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("rayCastNode", "joint")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.236639, -6.24065)
+script = ExtResource("4_c10rj")
+rayCastNode = NodePath("Camera3D/RayCast3D")
+joint = NodePath("PinJoint3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0598192, 0, 0)
+shape = SubResource("CapsuleShape3D_6wlkr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0702372, 0, 0)
+mesh = SubResource("CapsuleMesh_bugf5")
+
+[node name="Camera3D" type="Camera3D" parent="player"]
+transform = Transform3D(-0.995708, 0, -0.0925513, 0, 1, 0, 0.0925513, 0, -0.995708, -0.0331674, 0.482924, 0)
+script = ExtResource("5_i8sw2")
+
+[node name="RayCast3D" type="RayCast3D" parent="player/Camera3D"]
+transform = Transform3D(-0.9979, 0, 0.0647657, 0, 1, 0, -0.0647657, 0, -0.9979, 0.00731051, 0.0251715, -0.0832868)
+target_position = Vector3(0, 0, 10)
+debug_shape_thickness = 5
+
+[node name="PinJoint3D" type="PinJoint3D" parent="player"]
+node_a = NodePath("..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.610919, 0.00169958, -0.791691, 0.791693, -0.0013115, 0.610918, -1.38778e-17, -0.999998, -0.00214676, -7.78732, 6.17881, 0)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58558, -1.37827, -0.0111179)
+shape = SubResource("BoxShape3D_kdcva")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(16.4267, 0, 0, 0, 1.11762, 0, 0, 0, 17.8292, -0.00853801, -1.71194, 0.015945)
+mesh = SubResource("BoxMesh_dkwug")
+
+[node name="CubeChecker" parent="." instance=ExtResource("7_no3tv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.890694, 5.4851)
+desiredColor = "red"
+
+[node name="CubeChecker2" parent="." instance=ExtResource("7_no3tv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00168, -0.890694, 2.9335)
+desiredColor = "yellow"
+
+[node name="CubeChecker3" parent="." instance=ExtResource("7_no3tv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9631, -0.890694, 2.89697)
+desiredColor = "cyan"
+
+[node name="Boom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_76adl")

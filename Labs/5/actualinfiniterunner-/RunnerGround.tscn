@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2h2d56s8lavu"]
+
+[ext_resource type="Texture2D" uid="uid://dd7n1h1jvmvd4" path="res://tile_0003.png" id="1_exnqp"]
+[ext_resource type="Texture2D" uid="uid://yfdcjyirq84n" path="res://tile_0004.png" id="2_gaa3f"]
+[ext_resource type="Texture2D" uid="uid://b1gqpjvrhedic" path="res://tile_0005.png" id="3_305as"]
+[ext_resource type="Texture2D" uid="uid://63tmmtc0nwcf" path="res://piecePurple_multi17.png" id="4_hkv6g"]
+[ext_resource type="Script" path="res://inf_box.gd" id="4_mqdu1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1y5x"]
+size = Vector2(85.3333, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1n6nv"]
+size = Vector2(8.66669, 10.3333)
+
+[node name="Ground" type="StaticBody2D"]
+position = Vector2(623, 474)
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(38.3333, 8.33334)
+shape = SubResource("RectangleShape2D_p1y5x")
+
+[node name="Tile0003" type="Sprite2D" parent="."]
+position = Vector2(6.33334, 7.00003)
+texture = ExtResource("1_exnqp")
+
+[node name="Tile0004" type="Sprite2D" parent="."]
+position = Vector2(22, 7.00003)
+texture = ExtResource("2_gaa3f")
+
+[node name="Tile0006" type="Sprite2D" parent="."]
+position = Vector2(38, 7)
+texture = ExtResource("2_gaa3f")
+
+[node name="Tile0007" type="Sprite2D" parent="."]
+position = Vector2(54, 7)
+texture = ExtResource("2_gaa3f")
+
+[node name="Tile0005" type="Sprite2D" parent="."]
+position = Vector2(70, 7)
+texture = ExtResource("3_305as")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Box" type="Area2D" parent="."]
+script = ExtResource("4_mqdu1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
+position = Vector2(56.6667, -8.83333)
+shape = SubResource("RectangleShape2D_1n6nv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Box"]
+position = Vector2(56.5, -7.83334)
+scale = Vector2(0.276042, 0.307291)
+texture = ExtResource("4_hkv6g")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Box" to="Box" method="_on_body_entered"]

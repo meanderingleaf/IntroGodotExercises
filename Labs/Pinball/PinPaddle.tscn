@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bokhqxe2v15jj"]
+
+[ext_resource type="Script" path="res://Labs/11/Paddle.gd" id="1_127gy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i814i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n7jb8"]
+size = Vector3(4.24712, 1, 1)
+
+[node name="PinPaddle" type="RigidBody3D" node_paths=PackedStringArray("hJoint")]
+gravity_scale = 0.0
+script = ExtResource("1_127gy")
+hJoint = NodePath("HingeJoint3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.16521, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_i814i")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_n7jb8")
+
+[node name="HingeJoint3D" type="HingeJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.79281, 0, 0)
+node_a = NodePath("..")
+angular_limit/enable = true
+angular_limit/upper = 0.303687
+angular_limit/lower = -0.284489
+motor/enable = true

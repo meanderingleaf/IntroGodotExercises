@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://4kqwvlbknup8"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_enugm"]
+[ext_resource type="Script" path="res://player_cam.gd" id="2_xtxuc"]
+[ext_resource type="Script" path="res://alert_zone.gd" id="3_ddxxd"]
+[ext_resource type="AudioStream" uid="uid://coh1r7csll02v" path="res://children-yay!-sound-effect-By-Tuna.mp3" id="4_0gk0r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kt8n6"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_litln"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_82qgo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2r6gb"]
+size = Vector3(3.00488, 2.43311, 2.40869)
+
+[node name="WalkingSim" type="Node3D"]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("1_enugm")
+
+[node name="PlayerCol" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_kt8n6")
+
+[node name="Pivot" type="Node3D" parent="Player"]
+
+[node name="PlayerCam" type="Camera3D" parent="Player/Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0412536, 0.668429, 0.0626373)
+script = ExtResource("2_xtxuc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_litln")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.977)
+mesh = SubResource("CylinderMesh_82qgo")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.963125, 0.269054, 0, -0.269054, 0.963125, 0, 3.86415, 2.24337)
+
+[node name="AlertZone" type="Area3D" parent="."]
+script = ExtResource("3_ddxxd")
+playerInside = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AlertZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0424805, 0.716553, -11.0092)
+shape = SubResource("BoxShape3D_2r6gb")
+
+[node name="Yay" type="AudioStreamPlayer" parent="AlertZone"]
+stream = ExtResource("4_0gk0r")
+
+[node name="Label3D" type="Label3D" parent="AlertZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45186, -14.7394)
+visible = false
+text = "Press E to interact"
+
+[connection signal="body_entered" from="AlertZone" to="AlertZone" method="_on_body_entered"]
+[connection signal="body_exited" from="AlertZone" to="AlertZone" method="_on_body_exited"]

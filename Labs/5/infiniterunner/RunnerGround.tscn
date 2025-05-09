@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4bdf81rn5e8x"]
+
+[ext_resource type="Script" path="res://InfiniteRunnerGround.gd" id="1_wru1m"]
+[ext_resource type="Texture2D" uid="uid://bk4hhc5fw105r" path="res://tile_0003.png" id="1_x86lq"]
+[ext_resource type="Texture2D" uid="uid://cag1unp5alplb" path="res://tile_0004.png" id="2_hk3so"]
+[ext_resource type="Texture2D" uid="uid://t50uobw4dqy3" path="res://tile_0005.png" id="3_fdc4e"]
+[ext_resource type="Texture2D" uid="uid://b83n6wfyxoiay" path="res://tile_0040.png" id="4_fm76b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1y5x"]
+size = Vector2(85.3333, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1n6nv"]
+size = Vector2(8.66669, 10.3333)
+
+[node name="Ground" type="StaticBody2D"]
+position = Vector2(623, 474)
+scale = Vector2(3, 3)
+script = ExtResource("1_wru1m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(38.3333, 8.33334)
+shape = SubResource("RectangleShape2D_p1y5x")
+
+[node name="Tile0003" type="Sprite2D" parent="."]
+position = Vector2(6.33334, 7.00003)
+texture = ExtResource("1_x86lq")
+
+[node name="Tile0004" type="Sprite2D" parent="."]
+position = Vector2(22, 7.00003)
+texture = ExtResource("2_hk3so")
+
+[node name="Tile0006" type="Sprite2D" parent="."]
+position = Vector2(38, 7)
+texture = ExtResource("2_hk3so")
+
+[node name="Tile0007" type="Sprite2D" parent="."]
+position = Vector2(54, 7)
+texture = ExtResource("2_hk3so")
+
+[node name="Tile0005" type="Sprite2D" parent="."]
+position = Vector2(70, 7)
+texture = ExtResource("3_fdc4e")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Box" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
+position = Vector2(56.6667, -8.83333)
+shape = SubResource("RectangleShape2D_1n6nv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Box"]
+position = Vector2(56.6667, -9.52876)
+scale = Vector2(0.811199, 0.767239)
+texture = ExtResource("4_fm76b")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Box" to="Box" method="_on_body_entered"]

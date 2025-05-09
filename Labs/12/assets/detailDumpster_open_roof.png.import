@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c61xgwj4gri2j"
+uid="uid://72w7t5iirdrt"
 path.s3tc="res://.godot/imported/detailDumpster_open_roof.png-4bbc3fcde64dbf13ad289907536c6794.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1ie3460p3bfa"]
+
+[ext_resource type="PackedScene" uid="uid://dajgr4ameyy20" path="res://SpaceShooterGame.tscn" id="1_2but3"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="SpaceShooterGame" parent="." instance=ExtResource("1_2but3")]
+script = null

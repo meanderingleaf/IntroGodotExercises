@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnwdv5okphssx"
+uid="uid://x8vv4766ifns"
 path.s3tc="res://.godot/imported/scaffolding_structure_bars.png-4b845d92b6ade8cb4066d591f424b60b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

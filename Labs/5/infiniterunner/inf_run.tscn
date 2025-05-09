@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://dghjy4swerorc"]
+
+[ext_resource type="AudioStream" uid="uid://dom4h3qkwoktd" path="res://Ludum Dare 38 - Track 2.wav" id="1_7bc7s"]
+[ext_resource type="AudioStream" uid="uid://d3fhb4o4re3ul" path="res://jump.wav" id="2_0wbvj"]
+[ext_resource type="AudioStream" uid="uid://bg7o15haijgw" path="res://crash.wav" id="3_nxp0p"]
+[ext_resource type="SpriteFrames" uid="uid://d1flyfxorpx7e" path="res://infinitePlayerRun.tres" id="4_4rx2j"]
+[ext_resource type="Script" path="res://InfinitePlayer.gd" id="4_veqms"]
+[ext_resource type="PackedScene" uid="uid://b4bdf81rn5e8x" path="res://RunnerGround.tscn" id="6_3lgma"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kmsu2"]
+
+[node name="InfRun" type="Node2D"]
+metadata/_edit_vertical_guides_ = [-968.0]
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_7bc7s")
+autoplay = true
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="Jump" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("2_0wbvj")
+
+[node name="Crash" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_nxp0p")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("4_veqms")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(544.21, 419.718)
+shape = SubResource("CapsuleShape2D_kmsu2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(544.21, 418.218)
+scale = Vector2(3.40128, 3.90228)
+sprite_frames = ExtResource("4_4rx2j")
+autoplay = "default"
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(542, 419)
+
+[node name="Ground" parent="." instance=ExtResource("6_3lgma")]
+position = Vector2(521, 483)
